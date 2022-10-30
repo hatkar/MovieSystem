@@ -1,0 +1,128 @@
+package com.hatmani.videostreamingsys.services;
+
+import com.hatmani.videostreamingsys.Dto.CategoryDto;
+import com.hatmani.videostreamingsys.Dto.MovieDto;
+import com.hatmani.videostreamingsys.Utils.Converter;
+import com.hatmani.videostreamingsys.entity.Categorie;
+import com.hatmani.videostreamingsys.entity.Movie;
+import com.hatmani.videostreamingsys.repository.CategorieRepository;
+import lombok.RequiredArgsConstructor;
+import org.reactivestreams.Publisher;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
+
+@Service
+//@RequiredArgsConstructor
+public class CategorieService implements ICategorieService {
+    @Autowired
+    private CategorieRepository categorieRepository;
+
+    @Override
+    public Flux<CategoryDto> getAllCategory() {
+        return categorieRepository.findAll().map(Converter::categoryToDto);
+
+    }
+    @Override
+    public Flux<Categorie> getAllCategory2() {
+
+        return categorieRepository.findAll();
+
+    }
+
+
+    @Override
+    public Mono<CategoryDto> getCategorie(String id) {
+        return categorieRepository.findById(id).map(Converter::categoryToDto).onErrorReturn(null);
+
+    }
+
+    @Override
+    public Mono<CategoryDto> saveCategorie(Mono<CategoryDto> dtoMono) {
+        System.out.println("Service :saving categorie...");
+
+       return dtoMono.map(Converter::DtoToCategorie)
+
+               .flatMap(categorieRepository::insert)
+               .map(Converter::categoryToDto);
+
+    }
+
+    @Override
+    public Mono<CategoryDto> updateCategorie(Mono<CategoryDto> dtoMono, String id) {
+
+        Mono<CategoryDto> categoryDtoMono = categorieRepository.findById(id)
+                .flatMap(c -> dtoMono.map(Converter::DtoToCategorie)
+                            .doOnNext(e -> e.setId(c.getId())))
+                .flatMap(categorieRepository::insert)
+                .map(Converter::categoryToDto);
+        return categoryDtoMono;
+    }
+
+
+
+    protected Mono<Movie> addMovieToCategorie(Mono<Movie> m, String idcateg) {
+
+
+      return  m
+                .flatMap(movie -> {
+                    return categorieRepository.findById(idcateg)
+                            .flatMap(
+                                    c->{
+                                        List<Movie>lmv= new ArrayList<Movie>();
+                                             if(c.getMovies()!=null)
+                                             {lmv=   c.getMovies();}
+                                        lmv.add(movie);
+                                        c.setMovies(lmv);
+
+
+                                    return categorieRepository.save(c);}
+                                )
+
+                            .map(categorie ->  movie);
+
+                });
+
+            /*    return m
+                .flatMap(movie -> {
+                   return categorieRepository.findById("63547b5008702616be34eedb")
+                            .map(c->{
+                                c.getMovies().add(movie);
+                                return c;})
+                            .flatMap(categorieRepository::save)
+                            .map(categorie ->  movie);
+
+                });*/
+
+
+        //Ancien
+     /*   Mono<Movie> movieMono = Mono.just(m)
+
+                .map(movie -> {
+                    movieDto.map(movieDto1 -> {
+                        categorieRepository.findById(movieDto1.getId())
+                                .flatMap(c -> {
+                                    c.getMovies().add(m);
+                                    return Mono.just(c);
+                                })
+
+                                .flatMap(categorieRepository::save).subscribe();
+                         return movieDto1;
+                    });
+                    return movie;
+
+                });
+        return movieMono;
+
+*/
+
+
+    }
+
+
+}
