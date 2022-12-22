@@ -16,4 +16,8 @@ public class MovieDto {
     private String imageurl;
    // @JsonIgnore()
     private String categorieid;
+    private String duration;
+    private String releaseyear;
+
+
 }

@@ -2,6 +2,7 @@ package com.hatmani.videostreamingsys.services;
 
 import com.hatmani.videostreamingsys.Dto.CategoryDto;
 import com.hatmani.videostreamingsys.Dto.MovieDto;
+import com.hatmani.videostreamingsys.Dto.PageSupport;
 import com.hatmani.videostreamingsys.Utils.Converter;
 import com.hatmani.videostreamingsys.entity.Categorie;
 import com.hatmani.videostreamingsys.entity.Movie;
@@ -9,6 +10,7 @@ import com.hatmani.videostreamingsys.repository.CategorieRepository;
 import lombok.RequiredArgsConstructor;
 import org.reactivestreams.Publisher;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -16,6 +18,8 @@ import reactor.core.publisher.Mono;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 @Service
 //@RequiredArgsConstructor
@@ -64,11 +68,47 @@ public class CategorieService implements ICategorieService {
         return categoryDtoMono;
     }
 
+    @Override
+    public Mono<PageSupport<CategoryDto>> getAllCategoriesByPage(int page, int size) {
+        PageRequest pagere = PageRequest.of(page, size);
+        System.out.println(pagere);
+
+        return categorieRepository.findAllByIdNotNullOrderByIdAsc(pagere)
+                .map(c->{return Converter.categoryToDto(c);})
+                .collectList()
+                .<PageSupport<CategoryDto>>flatMap(listpaged -> {
+                    return categorieRepository.count().flatMap(c -> {
+                                return Mono.just(
+                                        new PageSupport<CategoryDto>(listpaged, pagere.getPageNumber(), pagere.getPageSize(), c)
+                                );
+                            }
+                    );
+                });
+
+    }
+    @Override
+    public Mono<PageSupport<CategoryDto>> getAllCategoriescontainByPage(int page, int size,String keyword) {
+        PageRequest pagere = PageRequest.of(page, size);
+        System.out.println(pagere);
+
+        return categorieRepository.findAllByNameContains(pagere,keyword)
+                .map(c->{return Converter.categoryToDto(c);})
+                .collectList()
+                .<PageSupport<CategoryDto>>flatMap(listpaged -> {
+                    return categorieRepository.findAllByNameContains(keyword).count().flatMap(c -> {
+                                return Mono.just(
+                                        new PageSupport<CategoryDto>(listpaged, pagere.getPageNumber(), pagere.getPageSize(), c)
+                                );
+                            }
+                    );
+                });
+
+    }
 
 
     protected Mono<Movie> addMovieToCategorie(Mono<Movie> m, String idcateg) {
 
-
+        System.out.println("add to categ");
       return  m
                 .flatMap(movie -> {
                     return categorieRepository.findById(idcateg)

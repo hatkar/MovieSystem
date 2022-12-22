@@ -2,6 +2,7 @@ package com.hatmani.videostreamingsys.Utils;
 
 import com.hatmani.videostreamingsys.Dto.CategoryDto;
 import com.hatmani.videostreamingsys.Dto.MovieDto;
+import com.hatmani.videostreamingsys.Dto.MovieDtoRequest;
 import com.hatmani.videostreamingsys.entity.Categorie;
 import com.hatmani.videostreamingsys.entity.Movie;
 import org.springframework.beans.BeanUtils;
@@ -44,8 +45,17 @@ public class Converter {
     }
 
     public static Movie DtoToMovie(MovieDto dto) {
+
         Movie movie = new Movie();
-        BeanUtils.copyProperties(dto, movie);
+                BeanUtils.copyProperties(dto, movie);
         return movie;
     }
+    public static Movie DtoRequetToMovie(MovieDtoRequest dto) {
+
+        Movie movie = new Movie();
+        BeanUtils.copyProperties(dto, movie);
+        System.out.println(movie);
+        return movie;
+    }
+
 }
