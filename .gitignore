@@ -36,14 +36,14 @@ build/
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 # compiled output
-/dist
-/tmp
-/out-tsc
+MovieWeb/moviestreaming/dist
+MovieWeb/moviestreaming/tmp
+MovieWeb/moviestreaming/out-tsc
 # Only exists if Bazel was run
 /bazel-out
 
 # dependencies
-/node_modules
+MovieWeb/moviestreaming/node_modules
 
 # profiling files
 chrome-profiler-events*.json
@@ -66,24 +66,24 @@ chrome-profiler-events*.json
 .history/*
 
 # misc
-/.sass-cache
-/connect.lock
-/coverage
-/libpeerconnection.log
-npm-debug.log
-yarn-error.log
-testem.log
-/typings
+MovieWeb/moviestreaming/.sass-cache
+MovieWeb/moviestreaming/connect.lock
+MovieWeb/moviestreaming/coverage
+MovieWeb/moviestreaming/libpeerconnection.log
+MovieWeb/moviestreaming/npm-debug.log
+MovieWeb/moviestreaming/yarn-error.log
+MovieWeb/moviestreaming/testem.log
+MovieWeb/moviestreaming/typings
 
 # System Files
-.DS_Store
-Thumbs.db
+MovieWeb/moviestreaming/.DS_Store
+MovieWeb/moviestreaming/Thumbs.db
 #Angular
 # compiled output
 MovieWeb/moviestreaming/dist
 MovieWeb/moviestreaming/tmp
 MovieWeb/moviestreaming/out-tsc
-
+MovieWeb/moviestreaming/.angular/cache
 # dependencies
 MovieWeb/moviestreaming/node_modules
 
