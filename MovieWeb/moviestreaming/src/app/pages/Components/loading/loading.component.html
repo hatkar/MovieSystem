@@ -1,0 +1,33 @@
+
+<div *ngIf="movieState$ | async as state">
+	<div id="modal-status" class="zoom-anim-dialog mfp-hide modal"  *ngIf="show">
+		<h6 class="modal__title">Status change</h6>
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<div class="header__search-content">
+						<div class="col-2">
+							<img src="../../../../assets/img/fancybox_loading.gif">
+	
+						</div>
+						<div class="col-8" >
+							<p class="page-404__text">{{state.dataState }}!</p>
+						</div>
+					   
+					   
+						
+	
+						
+					</div>
+				</div>
+			  
+			  
+			</div>
+		</div>
+	
+		<div class="modal__btns">
+			
+			<button class="modal__btn modal__btn--dismiss" type="button" (click)="Dismiss()">Dismiss</button>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,32 @@
+@import 'https://fonts.googleapis.com/css?family=Open+Sans:400,600%7CUbuntu:300,400,500,700';
+@import '../../../assets/css/bootstrap-reboot.min.css';
+@import '../../../assets/css/bootstrap-grid.mino.css';
+@import '../../../assets/css/owl.carousel.min.css';
+@import '../../../assets/css/jquery.mCustomScrollbar.min.css';
+@import '../../../assets/css/ionicons.min.css';
+@import '../../../assets/css/plyr.css';
+@import '../../../assets/css/photoswipe.css';
+@import '../../../assets/css/default-skin.css';
+@import '../../../assets/css/main.css';
+
+
+
+
+
+.visible {
+    display: block;
+    
+  }
+  .invisible {
+    display: none;
+    
+  }
+  .moviedesc {
+    display: block;
+    margin-top: 15px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 15px;
+    line-height: 25px;
+    color: rgba(255,255,255,0.7);
+    letter-spacing: 0.2px;
+  }

@@ -1,0 +1,37 @@
+<div class="col-12">
+	<div class="row">
+		<!-- details form -->
+		<div class="col-12 col-lg-12">
+			<form [formGroup]="categForm" (ngSubmit)="savecateg()" class="profile__form">
+				<div class="row">
+					<div class="col-12">
+						<h4 class="profile__title">Categorie details</h4>
+					</div>
+
+					<div class="col-12 col-md-12 col-lg-12 col-xl-12">
+						<div class="profile__group">
+							<label class="profile__label" for="username">categorie</label>
+							<input id="name" formControlName="name" type="text" name="username" class="profile__input" placeholder="Categorie Name">
+						</div>
+					</div>
+					<div class="col-12 col-md-12 col-lg-12 col-xl-12">
+						<div class="profile__group">
+							<label class="profile__label" for="username">Description</label>
+							<textarea id="description" formControlName="description" class="form__textarea" placeholder="Description"></textarea>
+						</div>
+					</div>
+
+				
+
+					<div class="col-12">
+						<button class="profile__btn" type="submit">Save</button>
+					</div>
+				</div>
+			</form>
+		</div>
+		<!-- end details form -->
+
+	
+		<!-- end password form -->
+	</div>
+</div>

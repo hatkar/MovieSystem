@@ -1,0 +1,137 @@
+<main class="main">
+	<div class="container-fluid">
+		<div class="row">
+			<!-- main title -->
+			<div class="col-12" style="margin-top: 100px;">
+				<div class="main__title">
+					<h2>Catalog</h2>
+
+					<span class="main__title-stat">14,452 Total</span>
+
+					<div class="main__title-wrap">
+						<!-- filter sort -->
+						<div class="filter" id="filter__sort">
+							<span class="filter__item-label">Sort by:</span>
+
+							<div class="filter__item-btn dropdown-toggle" role="navigation" id="filter-sort" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								<input type="button" value="Date created">
+								<span></span>
+							</div>
+
+							<ul class="filter__item-menu dropdown-menu scrollbar-dropdown mCustomScrollbar _mCS_2 mCS_no_scrollbar" aria-labelledby="filter-sort" style="overflow: visible;"><div id="mCSB_2" class="mCustomScrollBox mCS-custom-bar mCSB_vertical mCSB_outside" tabindex="0" style="max-height: none;"><div id="mCSB_2_container" class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y" style="position:relative; top:0; left:0;" dir="ltr">
+								<li data-value="date created">Date created</li>
+								<li data-value="rating">Rating</li>
+								<li data-value="views">Views</li>
+							</div></div><div id="mCSB_2_scrollbar_vertical" class="mCSB_scrollTools mCSB_2_scrollbar mCS-custom-bar mCSB_scrollTools_vertical" style="display: none;"><div class="mCSB_draggerContainer"><div id="mCSB_2_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 30px; height: 0px; top: 0px;"><div class="mCSB_dragger_bar" style="line-height: 30px;"></div><div class="mCSB_draggerRail"></div></div></div></div></ul>
+						</div>
+						<!-- end filter sort -->
+
+						<!-- search -->
+						<form #form="ngForm" (submit)="search(form)" class="main__title-form">
+							<input type="text" id="keyword" ngModel name="keyword" placeholder="Find movie / tv series..">
+							<button type="submit">
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21.71,20.29,18,16.61A9,9,0,1,0,16.61,18l3.68,3.68a1,1,0,0,0,1.42,0A1,1,0,0,0,21.71,20.29ZM11,18a7,7,0,1,1,7-7A7,7,0,0,1,11,18Z"></path></svg>
+							</button>
+						</form>
+						<!-- end search -->
+					</div>
+				</div>
+			</div>
+			<!-- end main title -->
+
+			<!-- users -->
+			<div class="col-12">
+				<ng-container *ngIf="movieState$ | async as state" [ngSwitch]="state.dataState">
+					<ng-container *ngSwitchCase="DataStateEnum.LOADED">
+				<div class="main__table-wrap mCustomScrollbar _mCS_3" style="overflow: visible;"><div id="mCSB_3" class="mCustomScrollBox mCS-custom-bar2 mCSB_horizontal mCSB_outside" tabindex="0" style="max-height: none;"><div id="mCSB_3_container" class="mCSB_container" style="position: relative; top: 0px; left: -50px; width: 990px; min-width: 100%; overflow-x: inherit;" dir="ltr">
+					<table class="main__table">
+						<thead>
+							<tr>
+								<th>ID</th>
+								<th>TITLE</th>
+								<th>RATING</th>
+								<th>CATEGORY</th>
+								<th>DUREE</th>
+								<th>STATUS</th>
+								<th>RELEASE YEAR</th>
+								<th>ACTIONS</th>
+							</tr>
+						</thead>
+
+						<tbody>
+							<tr *ngFor="let movie of pagemovies!.content">
+								<td>
+									<div class="main__table-text">23</div>
+								</td>
+								<td>
+									<div class="main__table-text">{{movie.moviename}}</div>
+								</td>
+								<td>
+									<div class="main__table-text main__table-text--rate">7.9</div>
+								</td>
+								<td>
+									<div class="main__table-text">Movie</div>
+								</td>
+								<td>
+									<div class="main__table-text">{{movie.duration}}</div>
+								</td>
+								<td>
+									<div class="main__table-text main__table-text--green">Visible</div>
+								</td>
+								<td>
+									<div class="main__table-text">{{movie.releaseyear}}</div>
+								</td>
+								<td>
+									<div class="main__table-btns">
+										<a href="http://flixgo.volkovdesign.com/admin/catalog.html#modal-status" class="main__table-btn main__table-btn--banned open-modal">
+											<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12,13a1,1,0,0,0-1,1v3a1,1,0,0,0,2,0V14A1,1,0,0,0,12,13Zm5-4V7A5,5,0,0,0,7,7V9a3,3,0,0,0-3,3v7a3,3,0,0,0,3,3H17a3,3,0,0,0,3-3V12A3,3,0,0,0,17,9ZM9,7a3,3,0,0,1,6,0V9H9Zm9,12a1,1,0,0,1-1,1H7a1,1,0,0,1-1-1V12a1,1,0,0,1,1-1H17a1,1,0,0,1,1,1Z"></path></svg>
+										</a>
+										<a href="#" (click)="gotomovies(movie.moviename!); false" class="main__table-btn main__table-btn--view">
+											<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21.92,11.6C19.9,6.91,16.1,4,12,4S4.1,6.91,2.08,11.6a1,1,0,0,0,0,.8C4.1,17.09,7.9,20,12,20s7.9-2.91,9.92-7.6A1,1,0,0,0,21.92,11.6ZM12,18c-3.17,0-6.17-2.29-7.9-6C5.83,8.29,8.83,6,12,6s6.17,2.29,7.9,6C18.17,15.71,15.17,18,12,18ZM12,8a4,4,0,1,0,4,4A4,4,0,0,0,12,8Zm0,6a2,2,0,1,1,2-2A2,2,0,0,1,12,14Z"></path></svg>
+										</a>
+										<a href="http://flixgo.volkovdesign.com/admin/add-item.html" class="main__table-btn main__table-btn--edit">
+											<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5,18H9.24a1,1,0,0,0,.71-.29l6.92-6.93h0L19.71,8a1,1,0,0,0,0-1.42L15.47,2.29a1,1,0,0,0-1.42,0L11.23,5.12h0L4.29,12.05a1,1,0,0,0-.29.71V17A1,1,0,0,0,5,18ZM14.76,4.41l2.83,2.83L16.17,8.66,13.34,5.83ZM6,13.17l5.93-5.93,2.83,2.83L8.83,16H6ZM21,20H3a1,1,0,0,0,0,2H21a1,1,0,0,0,0-2Z"></path></svg>
+										</a>
+										<a href="http://flixgo.volkovdesign.com/admin/catalog.html#modal-delete" class="main__table-btn main__table-btn--delete open-modal">
+											<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,6H16V5a3,3,0,0,0-3-3H11A3,3,0,0,0,8,5V6H4A1,1,0,0,0,4,8H5V19a3,3,0,0,0,3,3h8a3,3,0,0,0,3-3V8h1a1,1,0,0,0,0-2ZM10,5a1,1,0,0,1,1-1h2a1,1,0,0,1,1,1V6H10Zm7,14a1,1,0,0,1-1,1H8a1,1,0,0,1-1-1V8H17Z"></path></svg>
+										</a>
+									</div>
+								</td>
+							</tr>
+							
+						</tbody>
+					</table>
+				</div></div><div id="mCSB_3_scrollbar_horizontal" class="mCSB_scrollTools mCSB_3_scrollbar mCS-custom-bar2 mCSB_scrollTools_horizontal" style="display: block;"><div class="mCSB_draggerContainer"><div id="mCSB_3_dragger_horizontal" class="mCSB_dragger" style="position: absolute; min-width: 30px; display: block; width: 893px; max-width: 930px; left: 47px;"><div class="mCSB_dragger_bar"></div><div class="mCSB_draggerRail"></div></div></div></div></div>
+			</ng-container>
+		</ng-container>
+			</div>
+			<!-- end users -->
+
+			<!-- paginator -->
+			<div class="col-12">
+				<div class="paginator-wrap">
+					<span>10 from 14 452</span>
+
+					<ul class="paginator">
+						<li class="paginator__item paginator__item--prev">
+							<a href="#" (click)="prec(); false"><svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" viewBox="0 0 24 24"><path d="M8.5,12.8l5.7,5.6c0.4,0.4,1,0.4,1.4,0c0,0,0,0,0,0c0.4-0.4,0.4-1,0-1.4l-4.9-5l4.9-5c0.4-0.4,0.4-1,0-1.4c-0.2-0.2-0.4-0.3-0.7-0.3c-0.3,0-0.5,0.1-0.7,0.3l-5.7,5.6C8.1,11.7,8.1,12.3,8.5,12.8C8.5,12.7,8.5,12.7,8.5,12.8z"></path></svg></a>
+						</li>
+						<li class="paginator__item" *ngFor="let item of pagArray" [ngClass]="item == pagemovies!.pageNumber ? 'paginator__item paginator__item--active' : 'paginator__item'">
+							<a href="#" (click)="goto(item); false">{{item}}</a></li>
+						
+	
+						<li class="paginator__item paginator__item--next">
+							<a href="#" (click)="suiv(); false">
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+									<path d="M15.54,11.29,9.88,5.64a1,1,0,0,0-1.42,0,1,1,0,0,0,0,1.41l4.95,5L8.46,17a1,1,0,0,0,0,1.41,1,1,0,0,0,.71.3,1,1,0,0,0,.71-.3l5.66-5.65A1,1,0,0,0,15.54,11.29Z"></path>
+								</svg>
+								
+								</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<!-- end paginator -->
+		</div>
+	</div>
+</main>

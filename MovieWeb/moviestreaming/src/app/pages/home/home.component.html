@@ -1,0 +1,366 @@
+<!-- page title -->
+<section class="section section--first section--bg" data-bg="../../assets/img/section/section.jpg">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                
+            </div>
+        </div>
+    </div>
+</section>
+<!-- end page title -->
+<app-loading></app-loading>
+<!-- filter -->
+<div class="filter">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="filter__content">
+                    <div class="filter__items">
+                        <!-- filter item -->
+                        <div class="filter__item" id="filter__genre">
+                            <span class="filter__item-label">GENRE:</span>
+
+                            <div class="filter__item-btn dropdown-toggle" role="navigation" id="filter-genre" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <input type="button" value="{{selectedcategorie.name}}">
+                                <span></span>
+                            </div>
+                            
+                            <ul class="filter__item-menu dropdown-menu scrollbar-dropdown" aria-labelledby="filter-genre">
+
+                                <li idcateg=" v" data-value="All"  (click)="this.selectAllcategorie()"   >All Categories</li>
+                                <li *ngFor="let categorie of categories" attr.idcateg="{{categorie.id}}"  attr.data-value="{{categorie.name}}"     (click)="this.selectedcategoriechange(categorie)">{{categorie.name}}</li>
+                                <!--li>Animation</li>
+                                <li>Biography</li>
+                                <li>Comedy</li>
+                                <li>Cooking</li>
+                                <li>Dance</li>
+                                <li>Documentary</li>
+                                <li>Drama</li>
+                                <li>Education</li>
+                                <li>Entertainment</li>
+                                <li>Family</li>
+                                <li>Fantasy</li>
+                                <li>History</li>
+                                <li>Horror</li>
+                                <li>Independent</li>
+                                <li>International</li>
+                                <li>Kids</li>
+                                <li>Kids & Family</li>
+                                <li>Medical</li>
+                                <li>Military/War</li>
+                                <li>Music</li>
+                                <li>Musical</li>
+                                <li>Mystery/Crime</li>
+                                <li>Nature</li>
+                                <li>Paranormal</li>
+                                <li>Politics</li>
+                                <li>Racing</li>
+                                <li>Romance</li>
+                                <li>Sci-Fi/Horror</li>
+                                <li>Science</li>
+                                <li>Science Fiction</li>
+                                <li>Science/Nature</li>
+                                <li>Spanish</li>
+                                <li>Travel</li>
+                                <li>Western</li-->
+                            </ul>
+                        </div>
+                        <!-- end filter item -->
+
+                      
+                        <!-- end filter item -->
+
+                      
+                        <!-- end filter item -->
+
+                        <!-- filter item -->
+                        <div class="filter__item" id="filter__year">
+                            <span class="filter__item-label">RELEASE YEAR:</span>
+
+                            <div class="filter__item-btn dropdown-toggle" role="button" id="filter-year" (change)="this.startyearchange($event)"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <div class="filter__range">
+                                    <div id="filter__years-start"  ></div>
+                                    <div id="filter__years-end" (change)="this.startyearchange($event)"></div>
+                                </div>
+                                <span></span>
+                            </div>
+
+                            <div class="filter__item-menu filter__item-menu--range dropdown-menu"  aria-labelledby="filter-year">
+                                <div id="filter__years" (click)="this.startyearchange($event)" ></div>
+                            </div>
+                        </div>
+                        <!-- end filter item -->
+                    </div>
+                    
+                    <!-- filter btn -->
+                    <button class="filter__btn" type="button" (click)="applyfilter()">apply filter</button>
+                    <!-- end filter btn -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end filter -->
+
+<!-- catalog -->
+<div class="catalog">
+    <div class="container">
+        <div class="row">
+            <!-- card -->
+            <div class="col-6 col-sm-4 col-lg-3 col-xl-2" *ngFor="let movie of pagemovies!.content">
+                <div class="card">
+                    <div class="card__cover">
+                        <img src="{{this.BASEURL+'/photo/'+movie.imageurl}}" alt="">
+                        <a href="#" (click)="gotomovies(movie.moviename!); false" class="card__play">
+                            <i class="icon ion-ios-play"></i>
+                        </a>
+                    </div>
+                    <div class="card__content">
+                        <h3 class="card__title"><a href="#" (click)="gotomovies(movie.moviename!); false">{{movie.moviename}}</a></h3>
+                        <span class="card__category">
+                            <a href="#">{{findCatefName(movie.categorieid!)}}</a>
+                            
+                        </span>
+                        <span class="card__rate"><i class="icon ion-ios-star"></i>8.4</span>
+                    </div>
+                </div>
+            </div>
+            <!-- end card -->
+
+            <!-- card -->
+            <!--div class="col-6 col-sm-4 col-lg-3 col-xl-2">
+                <div class="card">
+                    <div class="card__cover">
+                        <img src="../../assets/img/covers/cover2.jpg" alt="">
+                        <a href="#" class="card__play">
+                            <i class="icon ion-ios-play"></i>
+                        </a>
+                    </div>
+                    <div class="card__content">
+                        <h3 class="card__title"><a href="#">Benched</a></h3>
+                        <span class="card__category">
+                            <a href="#">Comedy</a>
+                        </span>
+                        <span class="card__rate"><i class="icon ion-ios-star"></i>7.1</span>
+                    </div>
+                </div>
+            </div>
+           
+            <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
+                <div class="card">
+                    <div class="card__cover">
+                        <img src="../../assets/img/covers/cover3.jpg" alt="">
+                        <a href="#" class="card__play">
+                            <i class="icon ion-ios-play"></i>
+                        </a>
+                    </div>
+                    <div class="card__content">
+                        <h3 class="card__title"><a href="#">Whitney</a></h3>
+                        <span class="card__category">
+                            <a href="#">Romance</a>
+                            <a href="#">Drama</a>
+                            <a href="#">Music</a>
+                        </span>
+                        <span class="card__rate"><i class="icon ion-ios-star"></i>6.3</span>
+                    </div>
+                </div>
+            </div>
+           
+            <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
+                <div class="card">
+                    <div class="card__cover">
+                        <img src="../../assets/img/covers/cover4.jpg" alt="">
+                        <a href="#" class="card__play">
+                            <i class="icon ion-ios-play"></i>
+                        </a>
+                    </div>
+                    <div class="card__content">
+                        <h3 class="card__title"><a href="#">Blindspotting</a></h3>
+                        <span class="card__category">
+                            <a href="#">Comedy</a>
+                            <a href="#">Drama</a>
+                        </span>
+                        <span class="card__rate"><i class="icon ion-ios-star"></i>7.9</span>
+                    </div>
+                </div>
+            </div>
+          
+            <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
+                <div class="card">
+                    <div class="card__cover">
+                        <img src="../../assets/img/covers/cover5.jpg" alt="">
+                        <a href="#" class="card__play">
+                            <i class="icon ion-ios-play"></i>
+                        </a>
+                    </div>
+                    <div class="card__content">
+                        <h3 class="card__title"><a href="#">I Dream in Another Language</a></h3>
+                        <span class="card__category">
+                            <a href="#">Action</a>
+                            <a href="#">Triler</a>
+                        </span>
+                        <span class="card__rate"><i class="icon ion-ios-star"></i>8.4</span>
+                    </div>
+                </div>
+            </div>
+         
+            <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
+                <div class="card">
+                    <div class="card__cover">
+                        <img src="../../assets/img/covers/cover6.jpg" alt="">
+                        <a href="#" class="card__play">
+                            <i class="icon ion-ios-play"></i>
+                        </a>
+                    </div>
+                    <div class="card__content">
+                        <h3 class="card__title"><a href="#">Benched</a></h3>
+                        <span class="card__category">
+                            <a href="#">Comedy</a>
+                        </span>
+                        <span class="card__rate"><i class="icon ion-ios-star"></i>7.1</span>
+                    </div>
+                </div>
+            </div>
+         
+            <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
+                <div class="card">
+                    <div class="card__cover">
+                        <img src="../../assets/img/covers/cover6.jpg" alt="">
+                        <a href="#" class="card__play">
+                            <i class="icon ion-ios-play"></i>
+                        </a>
+                    </div>
+                    <div class="card__content">
+                        <h3 class="card__title"><a href="#">Whitney</a></h3>
+                        <span class="card__category">
+                            <a href="#">Romance</a>
+                            <a href="#">Drama</a>
+                            <a href="#">Music</a>
+                        </span>
+                        <span class="card__rate"><i class="icon ion-ios-star"></i>6.3</span>
+                    </div>
+                </div>
+            </div>
+          
+            <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
+                <div class="card">
+                    <div class="card__cover">
+                        <img src="../../assets/img/covers/cover5.jpg" alt="">
+                        <a href="#" class="card__play">
+                            <i class="icon ion-ios-play"></i>
+                        </a>
+                    </div>
+                    <div class="card__content">
+                        <h3 class="card__title"><a href="#">Blindspotting</a></h3>
+                        <span class="card__category">
+                            <a href="#">Comedy</a>
+                            <a href="#">Drama</a>
+                        </span>
+                        <span class="card__rate"><i class="icon ion-ios-star"></i>7.9</span>
+                    </div>
+                </div>
+            </div>
+           
+            <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
+                <div class="card">
+                    <div class="card__cover">
+                        <img src="../../assets/img/covers/cover4.jpg" alt="">
+                        <a href="#" class="card__play">
+                            <i class="icon ion-ios-play"></i>
+                        </a>
+                    </div>
+                    <div class="card__content">
+                        <h3 class="card__title"><a href="#">I Dream in Another Language</a></h3>
+                        <span class="card__category">
+                            <a href="#">Action</a>
+                            <a href="#">Triler</a>
+                        </span>
+                        <span class="card__rate"><i class="icon ion-ios-star"></i>8.4</span>
+                    </div>
+                </div>
+            </div>
+           
+            <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
+                <div class="card">
+                    <div class="card__cover">
+                        <img src="../../assets/img/covers/cover3.jpg" alt="">
+                        <a href="#" class="card__play">
+                            <i class="icon ion-ios-play"></i>
+                        </a>
+                    </div>
+                    <div class="card__content">
+                        <h3 class="card__title"><a href="#">Benched</a></h3>
+                        <span class="card__category">
+                            <a href="#">Comedy</a>
+                        </span>
+                        <span class="card__rate"><i class="icon ion-ios-star"></i>7.1</span>
+                    </div>
+                </div>
+            </div>
+           
+            <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
+                <div class="card">
+                    <div class="card__cover">
+                        <img src="../../assets/img/covers/cover2.jpg" alt="">
+                        <a href="#" class="card__play">
+                            <i class="icon ion-ios-play"></i>
+                        </a>
+                    </div>
+                    <div class="card__content">
+                        <h3 class="card__title"><a href="#">Whitney</a></h3>
+                        <span class="card__category">
+                            <a href="#">Romance</a>
+                            <a href="#">Drama</a>
+                            <a href="#">Music</a>
+                        </span>
+                        <span class="card__rate"><i class="icon ion-ios-star"></i>6.3</span>
+                    </div>
+                </div>
+            </div>
+          
+            <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
+                <div class="card">
+                    <div class="card__cover">
+                        <img src="../../assets/img/covers/cover.jpg" alt="">
+                        <a href="#" class="card__play">
+                            <i class="icon ion-ios-play"></i>
+                        </a>
+                    </div>
+                    <div class="card__content">
+                        <h3 class="card__title"><a href="#">Blindspotting</a></h3>
+                        <span class="card__category">
+                            <a href="#">Comedy</a>
+                            <a href="#">Drama</a>
+                        </span>
+                        <span class="card__rate"><i class="icon ion-ios-star"></i>7.9</span>
+                    </div>
+                </div>
+            </div-->
+            <!-- end card -->
+
+            <!-- paginator -->
+          
+            <div class="col-12">
+                <ul class="paginator">
+                    <li class="paginator__item paginator__item--prev">
+                        <a href="#" (click)="prec(); false"><i class="icon ion-ios-arrow-back"></i></a>
+                    </li>
+                    <li class="paginator__item" *ngFor="let item of pagArray" [ngClass]="item == pagemovies!.pageNumber ? 'paginator__item paginator__item--active' : 'paginator__item'">
+                        <a href="#" (click)="goto(item); false">{{item}}</a></li>
+                  
+                    <li class="paginator__item paginator__item--next">
+                        <a href="#" (click)="suiv(); false"><i class="icon ion-ios-arrow-forward"></i></a>
+                    </li>
+                </ul>
+            </div>
+            <!-- end paginator -->
+
+           
+        </div>
+    </div>
+</div>
+<!-- end catalog -->
+
+<!-- expected premiere -->
+
