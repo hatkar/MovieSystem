@@ -1,4 +1,4 @@
-package com.hatmani.gatway;
+package com.hatmani.gatway.configuration;
 
 import org.springframework.stereotype.Component;
 

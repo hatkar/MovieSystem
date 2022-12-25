@@ -56,13 +56,13 @@ class WebSecurityConfigadp(private val userDetailsService: UserDetailsServiceImp
 
 
    @Bean
-    @Throws(java.lang.Exception::class)
+    //@Throws(java.lang.Exception::class)
     fun  authenticationManager(authConfig: AuthenticationConfiguration):AuthenticationManager
     {
         return authConfig.authenticationManager
     }
 
-    @Throws(java.lang.Exception::class)
+   // @Throws(java.lang.Exception::class)
     override fun configure(http: HttpSecurity?) {
 
 

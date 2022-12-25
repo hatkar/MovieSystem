@@ -1,6 +1,5 @@
-package com.hatmani.gatway;
+package com.hatmani.gatway.configuration;
 
-import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.gateway.route.RouteLocator;
 import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;

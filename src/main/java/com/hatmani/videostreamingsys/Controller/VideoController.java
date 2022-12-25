@@ -8,7 +8,7 @@ import com.hatmani.videostreamingsys.repository.CategorieRepository;
 import com.hatmani.videostreamingsys.services.CategorieService;
 import com.hatmani.videostreamingsys.services.FileStorage;
 import com.hatmani.videostreamingsys.services.MovieService;
-import com.sun.tools.javac.comp.Todo;
+//import com.sun.tools.javac.comp.Todo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
@@ -109,15 +109,16 @@ public class VideoController {
 
         return categorieService.getCategorie(id);
     }
-
+/*Suppressed Methode and Moved to AdminController
     @PostMapping("/addCategorie")
     //!!!!!!@RequestBody Mono<ProductDto>!!!!!! est pas @RequestBody ProductDto
     public Mono<CategoryDto> saveProduct(@RequestBody Mono<CategoryDto> categorie) {
 
         return categorieService.saveCategorie(categorie);
-    }
+    }*/
 
     //Video
+   /*Suppressed Methode and Moved to AdminController
     @PostMapping("/addfile")
     public Mono<MovieDto> savefile(@RequestPart("movie") Mono<FilePart> movie) {
         System.out.println("add file");
@@ -126,7 +127,7 @@ public class VideoController {
         //fileStorageservice.storeFile(movie.block().getFilemovie(),"movie1");
         return Mono.empty();
         //return movieService.saveMovie(Mono.just(movie.block().getMovie()));
-    }
+    }*/
 
  /*   @PostMapping("file/single")
     public Mono<Void> upload(@RequestPart("user-name") String name,
@@ -146,6 +147,7 @@ public class VideoController {
     }*/
 
 
+  /*Suppressed Methode and Moved to AdminController
     @PostMapping("/addmovie")
     //!!!!!!@RequestBody Mono<ProductDto>!!!!!! est pas @RequestBody ProductDto
     public Mono<MovieDto> saveMovie(@RequestBody Mono<MultipartFile> movie) {
@@ -156,7 +158,7 @@ public class VideoController {
         //fileStorageservice.storeFile(movie.block().getFilemovie(),"movie1");
         return Mono.empty();
         //return movieService.saveMovie(Mono.just(movie.block().getMovie()));
-    }
+    }*/
 
     @GetMapping("/movie/{name}")
     public Mono<ResponseEntity<MovieDto>> getMovie(@PathVariable String name) {
@@ -223,24 +225,25 @@ public class VideoController {
     @GetMapping(value = "/searchmovieofcategorieandyear")
     public Mono<PageSupport<MovieDto>> searchpageablemovieofcategorieandyear(final @RequestParam(name = "page") int page,
                                                                              final @RequestParam(name = "size") int size,
-                                                                             final @RequestParam(name = "idcategory",defaultValue = "") String idcategory,
-                                                                             final @RequestParam(name = "minyear",defaultValue = "1940") String minyear,
-                                                                             final @RequestParam(name = "maxyear",defaultValue = "2023") String maxyear) {
-Integer mindate=Integer.parseInt(minyear)-1;
-Integer maxdate=Integer.parseInt(maxyear)+1;
-             //   System.out.println("AVEC CATEGORIE ET AVEC KEYWORD" + idcategory);
-               return movieService.getAllMovieOfCategoryAndDateByPage(page, size, idcategory, mindate.toString(),maxdate.toString());
+                                                                             final @RequestParam(name = "idcategory", defaultValue = "") String idcategory,
+                                                                             final @RequestParam(name = "minyear", defaultValue = "1940") String minyear,
+                                                                             final @RequestParam(name = "maxyear", defaultValue = "2023") String maxyear) {
+        Integer mindate = Integer.parseInt(minyear) - 1;
+        Integer maxdate = Integer.parseInt(maxyear) + 1;
+        //   System.out.println("AVEC CATEGORIE ET AVEC KEYWORD" + idcategory);
+        return movieService.getAllMovieOfCategoryAndDateByPage(page, size, idcategory, mindate.toString(), maxdate.toString());
 
 
 //return  null;
 
     }
+
     @GetMapping(value = "/searchmoviecontainbypage")
     public Mono<PageSupport<MovieDto>> searchpageablemovieofcategorieandyear(final @RequestParam(name = "page") int page,
                                                                              final @RequestParam(name = "size") int size,
-                                                                             final @RequestParam(name = "keyword",defaultValue = "") String keyword) {
+                                                                             final @RequestParam(name = "keyword", defaultValue = "") String keyword) {
 
-        return movieService.getAllMovieContainsByPage(page,size,keyword);
+        return movieService.getAllMovieContainsByPage(page, size, keyword);
 
 
 //return  null;

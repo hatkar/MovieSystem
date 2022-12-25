@@ -14,54 +14,54 @@ import javax.servlet.http.HttpServletResponse
 class JwtUtils {
     //il faut ajouter \ et lateinit
     @Value("\${app.jwtSecret}")
-    private lateinit var jwtSecret:String
+    private lateinit var jwtSecret: String
+
     @Value("\${app.jwtExpirationInMs}")
-    private var jwtExpirationInMs:Int = 1000000
-    public fun generateJwtToken(authentication:Authentication):String
-    {
+    private var jwtExpirationInMs: Int = 1000000
+    public fun generateJwtToken(authentication: Authentication): String {
         var userPrincipal: UserDetailsImpl = authentication.principal as UserDetailsImpl
-        var now :Date= Date()
-        var expir:Date = Date(now.time+jwtExpirationInMs)
-        return  Jwts.builder()
-            .setSubject(userPrincipal.username)
-            .setIssuedAt(Date())
-            .setExpiration(expir)
-            .signWith(SignatureAlgorithm.HS384,jwtSecret)
-            .compact()
+        var now: Date = Date()
+        var expir: Date = Date(now.time + jwtExpirationInMs)
+        return Jwts.builder()
+                .setSubject(userPrincipal.username)
+                .claim("role", userPrincipal.authorities.first())
+                .setIssuedAt(Date())
+                .setExpiration(expir)
+                .signWith(SignatureAlgorithm.HS384, jwtSecret)
+                .compact()
 
     }
-    public fun getUserNameFromJwtToken(token:String?):String
-    {
+
+    public fun getUserNameFromJwtToken(token: String?): String {
         return Jwts.parser()
-            .setSigningKey(jwtSecret)
-            .parseClaimsJws(token)
-            .body
-            .subject
+                .setSigningKey(jwtSecret)
+                .parseClaimsJws(token)
+                .body
+                .subject
     }
 
-    public fun validateJwtToken(authToken: String?, request: HttpServletRequest, response: HttpServletResponse):Boolean
-    {
+    public fun validateJwtToken(authToken: String?, request: HttpServletRequest, response: HttpServletResponse): Boolean {
         try {
             Jwts.parser()
-                .setSigningKey(jwtSecret)
-                .parseClaimsJws(authToken)
+                    .setSigningKey(jwtSecret)
+                    .parseClaimsJws(authToken)
             return true
-        }catch (ex: SignatureException){
+        } catch (ex: SignatureException) {
             println("SIGNATURE EXCEPTION")
             senderror(response, ex)
             //SignatureException
-        }catch (ex: MalformedJwtException){
+        } catch (ex: MalformedJwtException) {
             println("MalformedJwtException EXCEPTION")
             senderror(response, ex)
-        }catch (ex: ExpiredJwtException){
+        } catch (ex: ExpiredJwtException) {
             println("ExpiredJwtException EXCEPTION ")
             senderror(response, ex)
 
 
-        }catch (ex: UnsupportedJwtException){
+        } catch (ex: UnsupportedJwtException) {
             println("UnsupportedJwtException EXCEPTION")
             senderror(response, ex)
-        }catch (ex:IllegalArgumentException){
+        } catch (ex: IllegalArgumentException) {
             println("IllegalArgumentException EXCEPTION")
             senderror(response, ex)
         }
@@ -75,7 +75,7 @@ class JwtUtils {
         response?.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
 
         response?.getWriter()?.write(
-            mapper.writeValueAsString(ex.localizedMessage)
+                mapper.writeValueAsString(ex.localizedMessage)
         )
     }
 
