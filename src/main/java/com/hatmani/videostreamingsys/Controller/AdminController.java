@@ -40,7 +40,12 @@ public class AdminController {
     private final Path basePath = Paths.get("./src/main/resources/upload/");
     @Autowired
     private FileStorage fileStorageservice;
+    @GetMapping("/ping")
+    //!!!!!!@RequestBody Mono<ProductDto>!!!!!! est pas @RequestBody ProductDto
+    public Mono<String> ping() {
 
+        return Mono.just("Admin Area Success Ping");
+    }
     @PostMapping("/addCategorie")
     //!!!!!!@RequestBody Mono<ProductDto>!!!!!! est pas @RequestBody ProductDto
     public Mono<CategoryDto> saveProduct(@RequestBody Mono<CategoryDto> categorie) {

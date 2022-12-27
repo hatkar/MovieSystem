@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                
+
             </div>
         </div>
     </div>
@@ -25,7 +25,7 @@
                                 <input type="button" value="{{selectedcategorie.name}}">
                                 <span></span>
                             </div>
-                            
+
                             <ul class="filter__item-menu dropdown-menu scrollbar-dropdown" aria-labelledby="filter-genre">
 
                                 <li idcateg=" v" data-value="All"  (click)="this.selectAllcategorie()"   >All Categories</li>
@@ -68,10 +68,10 @@
                         </div>
                         <!-- end filter item -->
 
-                      
+
                         <!-- end filter item -->
 
-                      
+
                         <!-- end filter item -->
 
                         <!-- filter item -->
@@ -92,7 +92,7 @@
                         </div>
                         <!-- end filter item -->
                     </div>
-                    
+
                     <!-- filter btn -->
                     <button class="filter__btn" type="button" (click)="applyfilter()">apply filter</button>
                     <!-- end filter btn -->
@@ -111,7 +111,7 @@
             <div class="col-6 col-sm-4 col-lg-3 col-xl-2" *ngFor="let movie of pagemovies!.content">
                 <div class="card">
                     <div class="card__cover">
-                        <img src="{{this.BASEURL+'/photo/'+movie.imageurl}}" alt="">
+                        <img src="{{this.BASEURL+'/api/ressources/photo/'+movie.imageurl}}" alt="">
                         <a href="#" (click)="gotomovies(movie.moviename!); false" class="card__play">
                             <i class="icon ion-ios-play"></i>
                         </a>
@@ -120,7 +120,7 @@
                         <h3 class="card__title"><a href="#" (click)="gotomovies(movie.moviename!); false">{{movie.moviename}}</a></h3>
                         <span class="card__category">
                             <a href="#">{{findCatefName(movie.categorieid!)}}</a>
-                            
+
                         </span>
                         <span class="card__rate"><i class="icon ion-ios-star"></i>8.4</span>
                     </div>
@@ -146,7 +146,7 @@
                     </div>
                 </div>
             </div>
-           
+
             <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
                 <div class="card">
                     <div class="card__cover">
@@ -166,7 +166,7 @@
                     </div>
                 </div>
             </div>
-           
+
             <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
                 <div class="card">
                     <div class="card__cover">
@@ -185,7 +185,7 @@
                     </div>
                 </div>
             </div>
-          
+
             <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
                 <div class="card">
                     <div class="card__cover">
@@ -204,7 +204,7 @@
                     </div>
                 </div>
             </div>
-         
+
             <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
                 <div class="card">
                     <div class="card__cover">
@@ -222,7 +222,7 @@
                     </div>
                 </div>
             </div>
-         
+
             <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
                 <div class="card">
                     <div class="card__cover">
@@ -242,7 +242,7 @@
                     </div>
                 </div>
             </div>
-          
+
             <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
                 <div class="card">
                     <div class="card__cover">
@@ -261,7 +261,7 @@
                     </div>
                 </div>
             </div>
-           
+
             <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
                 <div class="card">
                     <div class="card__cover">
@@ -280,7 +280,7 @@
                     </div>
                 </div>
             </div>
-           
+
             <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
                 <div class="card">
                     <div class="card__cover">
@@ -298,7 +298,7 @@
                     </div>
                 </div>
             </div>
-           
+
             <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
                 <div class="card">
                     <div class="card__cover">
@@ -318,7 +318,7 @@
                     </div>
                 </div>
             </div>
-          
+
             <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
                 <div class="card">
                     <div class="card__cover">
@@ -340,7 +340,7 @@
             <!-- end card -->
 
             <!-- paginator -->
-          
+
             <div class="col-12">
                 <ul class="paginator">
                     <li class="paginator__item paginator__item--prev">
@@ -348,7 +348,7 @@
                     </li>
                     <li class="paginator__item" *ngFor="let item of pagArray" [ngClass]="item == pagemovies!.pageNumber ? 'paginator__item paginator__item--active' : 'paginator__item'">
                         <a href="#" (click)="goto(item); false">{{item}}</a></li>
-                  
+
                     <li class="paginator__item paginator__item--next">
                         <a href="#" (click)="suiv(); false"><i class="icon ion-ios-arrow-forward"></i></a>
                     </li>
@@ -356,7 +356,7 @@
             </div>
             <!-- end paginator -->
 
-           
+
         </div>
     </div>
 </div>

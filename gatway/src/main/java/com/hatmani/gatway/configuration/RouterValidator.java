@@ -10,9 +10,12 @@ import org.springframework.http.server.reactive.ServerHttpRequest;
 @Component
 public class RouterValidator {
     public static final List<String> openApiEndpoints = Arrays.asList(
-            "/auth/register",
-            "/auth/login",
-            "/movies/"
+            "/auth/signin",
+            "/auth/signupadmin",
+            "/auth/signupinvite",
+            "/auth/ping",
+            "/movies/",
+            "/api/ressources/"
     );
 
     public Predicate<ServerHttpRequest> isSecured =

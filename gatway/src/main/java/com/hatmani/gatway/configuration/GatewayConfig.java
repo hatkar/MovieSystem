@@ -14,21 +14,36 @@ public class GatewayConfig {
     @Bean
     public RouteLocator routes(RouteLocatorBuilder builder) {
         return builder.routes()
-                .route("user-service", r -> r.path("/users/**")
+                .route("user-service", r -> r.path("/movies/api/**")
+                        .filters(f ->
+                                f.rewritePath("/service(?<segment>/?.*)", "$\\{segment}")
+                                        .filter(filter.apply(
+                                                new AuthenticationFilter.Config("")))
+                        )
+                        .uri("lb://video-service"))
+                .route("ressources-service", r -> r.path("/api/ressources/**")
+                                .filters(f ->
+                                        f.rewritePath("/service(?<segment>/?.*)", "$\\{segment}")
+                                                .filter(filter.apply(
+                                                        new AuthenticationFilter.Config("")))
+                                )
+                        .uri("lb://video-service"))
+                .route("admin-service", r -> r.path("/admin/api/**")
                         .filters(f ->
                                 f.rewritePath("/service(?<segment>/?.*)", "$\\{segment}")
                                         .filter(filter.apply(
                                                 new AuthenticationFilter.Config("Admin")))
                         )
-                        .uri("lb://user-service"))
+                        .uri("lb://video-service"))
 
                 .route("auth-service", r -> r.path("/auth/**")
                         .filters(f ->
                                 f.rewritePath("/service(?<segment>/?.*)", "$\\{segment}")
                                         .filter(filter.apply(
-                                                new AuthenticationFilter.Config("Admin")))
+                                                new AuthenticationFilter.Config("")))
                         )
-                        .uri("lb://auth-service"))
+                        .uri("lb://security-service"))
+
                 .build();
     }
 }

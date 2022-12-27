@@ -1,0 +1,40 @@
+
+
+spring:
+  data:
+    mongodb:
+      database: Moviedb3
+      host: localhost
+      port: 27017
+  servlet:
+    multipart:
+      enabled: true
+      file-size-threshold: 2KB
+      max-file-size: 200MB
+      max-request-size: 215MB
+
+
+  application:
+    name: video-service
+
+
+
+  cloud:
+    config:
+      uri: http://localhost:9296/video-service
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+    instance:
+    preferIpAddress: true
+
+
+  instance:
+    instance-id: ${spring.application.name}:${random.uuid}
+
+file:
+  upload-dir: moviemanger/uploads
+  rootDirectory: /Users/mac2/Downloads/videostreamingsys/moviemanger/uploads
+
+

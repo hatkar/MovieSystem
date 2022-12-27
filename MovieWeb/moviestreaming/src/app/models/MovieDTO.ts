@@ -1,4 +1,4 @@
-export class MovieDTO { 
+export class MovieDTO {
 
     id?: any;
     moviename?: string;
@@ -8,22 +8,22 @@ export class MovieDTO {
     releaseyear?:string;
     fileurl?:string;
     imageurl?:File;
-    
-    
 
-    
+
+
+
   }
-  export class MovieDTORequest { 
-   
+  export class MovieDTORequest {
+
     moviename?: string;
     description?: string;
     categorieid?: string;
-    
+
     duration?: string;
     releaseyear?:string;
-    
 
-    
+
+
   }
   export class categoryDTO{
     id?:string;
@@ -32,7 +32,7 @@ export class MovieDTO {
 movies?:MovieDTO[]|null=null;
   }
   export class Pagecategory{
-  
+
     content?:categoryDTO[];
     pageNumber?:number;
     pageSize?:number;

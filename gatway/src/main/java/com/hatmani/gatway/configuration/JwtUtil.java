@@ -15,17 +15,17 @@ public class JwtUtil {
     @Value("${app.jwtSecret}")
     private String secret;
 
-    private Key key;
+   // private Key key;
     private static final Logger logger = LoggerFactory.getLogger(JwtUtil.class);
-    @PostConstruct
+  /*  @PostConstruct
     public void init(){
         this.key = Keys.hmacShaKeyFor(secret.getBytes());
     }
-
+*/
     public Claims getAllClaimsFromToken(String token) {
        // Jwts.parser().setSigningKey(secret)
         //        .parseClaimsJws(token).getBody().getSubject();
-        return Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token).getBody();
+        return Jwts.parserBuilder().setSigningKey(secret).build().parseClaimsJws(token).getBody();
     }
 
     private boolean isTokenExpired(String token) {
@@ -39,7 +39,7 @@ public class JwtUtil {
     public boolean validateJwtToken(String authToken)
     {
         try{
-            Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(authToken);
+            Jwts.parserBuilder().setSigningKey(secret).build().parseClaimsJws(authToken);
             //Jwts.parser().setSigningKey(secret).parseClaimsJws(authToken);
             return true;
         }catch(SignatureException e)

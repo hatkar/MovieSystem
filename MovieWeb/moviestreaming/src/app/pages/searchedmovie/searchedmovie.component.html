@@ -28,16 +28,16 @@
             <div class="col-12">
                 <div class="filter__content">
                     <div class="filter__items">
-                      
 
-                       
 
-                       
 
-                       
+
+
+
+
                     </div>
-                    
-                  
+
+
                 </div>
             </div>
         </div>
@@ -56,7 +56,7 @@
                     <div class="row">
                         <div class="col-12 col-sm-4">
                             <div class="card__cover">
-                                <img src="{{this.BASEURL+'/photo/'+movie.imageurl}}"  alt="">
+                                <img src="{{this.BASEURL+'/api/ressources/photo/'+movie.imageurl}}"  alt="">
                                 <a href="#" (click)="gotomovies(movie.moviename!); false" class="card__play">
                                     <i class="icon ion-ios-play"></i>
                                 </a>
@@ -68,7 +68,7 @@
                                 <h3 class="card__title"><a href="#" (click)="gotomovies(movie.moviename!); false">{{movie.moviename}}</a></h3>
                                 <span class="card__category">
                                     <a href="#">{{findCatefName(movie.categorieid!)}}</a>
-                                    
+
                                 </span>
 
                                 <div class="card__wrap">
@@ -90,7 +90,7 @@
             </div>
             <!-- end card -->
 
-   
+
             <!-- paginator -->
             <div class="col-12">
                 <ul class="paginator">
@@ -99,7 +99,7 @@
                     </li>
                     <li class="paginator__item" *ngFor="let item of pagArray" [ngClass]="item == pagemovies!.pageNumber ? 'paginator__item paginator__item--active' : 'paginator__item'">
                         <a href="#" (click)="goto(item); false">{{item}}</a></li>
-                  
+
                     <li class="paginator__item paginator__item--next">
                         <a href="#" (click)="suiv(); false"><i class="icon ion-ios-arrow-forward"></i></a>
                     </li>

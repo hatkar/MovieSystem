@@ -20,6 +20,7 @@ import { MoviesEffects } from './state/Movies.effects';
 import { ListmoviebycategComponent } from './pages/categories/listmoviebycateg/listmoviebycateg.component';
 import { LoadingComponent } from './pages/components/loading/loading.component';
 import { SearchedmovieComponent } from './pages/searchedmovie/searchedmovie.component';
+import { LoginComponent } from './pages/login/login.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { SearchedmovieComponent } from './pages/searchedmovie/searchedmovie.comp
     ListcategorieComponent,
     ListmoviebycategComponent,
     LoadingComponent,
-    SearchedmovieComponent
+    SearchedmovieComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

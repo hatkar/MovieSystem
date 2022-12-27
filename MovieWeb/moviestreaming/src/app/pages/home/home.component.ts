@@ -20,7 +20,7 @@ selectedcategorie:categoryDTO=new categoryDTO();
 tmpcategorie:categoryDTO=new categoryDTO();
 pagemovies?:PageMovie;
 pagArray: number[] = [];
-BASEURL : string="http://localhost:9292/api";
+BASEURL : string="http://localhost:9292";
   constructor(private store:Store<any>,private router: Router) { }
 
   ngOnInit(): void {
@@ -45,7 +45,7 @@ BASEURL : string="http://localhost:9292/api";
 
         //return state.catalogState
       }
-      
+
         );
         this.store.dispatch(new GetAllPagedMoviesOfCategoriesAndYearsAction(0,this.selectedcategorie.id!,this.startyear.toString(),this.endyear.toString()))
        // this.store.dispatch(new GetAllPagedMoviesOfCategoriesAction(0,this.categid,this.keyword))
@@ -58,20 +58,20 @@ BASEURL : string="http://localhost:9292/api";
         this.categories=state.catalogState.Categogories;
     /*  if(this.clickedcategorie.id)
       {
-     
+
      this.categories.map(cat=>{if(cat.id==this.clickedcategorie.id) this.clickedcategorie=cat})
         console.log("==>ID CATEGORIE"+this.clickedcategorie.id);}
       else{
-        
+
         this.clickedcategorie=state.catalogState.Categogories[0]
-        
+
       }*/
-      
-      console.log("=======>**<======") 
+
+      console.log("=======>**<======")
     console.log(this.categories)
       }
     });
-  
+
     this.store.dispatch(new GetAllCategoriesAction());
   }
   applyfilter()
@@ -98,7 +98,7 @@ BASEURL : string="http://localhost:9292/api";
   startyearchange(event:any)
   {
     console.log(event.target)
-    
+
     let type=event.target.attributes['class'].value;
     if (type=='noUi-handle noUi-handle-lower')this.startyear=event.target.attributes['aria-valuetext'].value
     if(type=='noUi-handle noUi-handle-upper')this.endyear=event.target.attributes['aria-valuetext'].value
@@ -135,7 +135,7 @@ console.log("start year : "+this.startyear+" end Year : "+this.endyear )
 
   }
   createpagine(totalpag:number,current:number)
-  { 
+  {
 totalpag=totalpag-1;
     console.log("RECEIVED TOTAL PAGE ==>"+totalpag)
     console.log("RECEIVED CURRENT PAGE ==>"+current)
@@ -174,6 +174,6 @@ return this.pagArray;
   {
     this.router.navigate(['details', name]);
    // this.route.navigate(['admin/listmovie', { idcategorie: 'categid' }]);
-    
+
   }
 }

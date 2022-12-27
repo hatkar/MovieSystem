@@ -15,7 +15,7 @@ declare function  initializePlayer2():void;
   styleUrls: ['./detailsmovie.component.css']
 })
 export class DetailsmovieComponent implements OnInit {
-  BASEURL : string="http://localhost:9292/api";
+  BASEURL : string="http://localhost:9292";
                   // http://localhost:9292/api/video/movie
 movieName:string="";
 currentMovie?:MovieDTO= new MovieDTO;
@@ -33,12 +33,12 @@ readonly DataStateEnum= MoviesStateEnum;
    // this.route.params.subscribe(params => {this.categid=params['idcategorie']
     console.log(params)
     if(!this.movieName) this.movieName="Joker";
-    
-    
+
+
     this.getMovie(this.movieName);
-    
+
   });
-    
+
   }
   getMovie(movieName: string | undefined) {
     //throw new Error('Method not implemented.');
@@ -55,8 +55,8 @@ readonly DataStateEnum= MoviesStateEnum;
         console.log(this.movieurl)
         return state.catalogState})
         );*/
-       
-    
+
+
 
 // a enlever
 this.store.subscribe(resp=>{
@@ -66,9 +66,9 @@ this.store.subscribe(resp=>{
      // console.log(this.currentMovie);
       //this.currentMovie=resp;
       console.log(this.currentMovie);
-      this.photurl=this.BASEURL+"/photo/"+this.currentMovie!.imageurl;
-      this.movieurl=this.BASEURL+"/streamvideo/movie/"+this.currentMovie!.fileurl;
-      this.downloadurl=this.BASEURL+"/video/movie/"+this.currentMovie!.fileurl;
+      this.photurl=this.BASEURL+"/api/ressources/photo/"+this.currentMovie!.imageurl;
+      this.movieurl=this.BASEURL+"/api/ressources/video/movie/"+this.currentMovie!.fileurl;
+      this.downloadurl=this.BASEURL+"/api/ressources/video/movie/"+this.currentMovie!.fileurl;
       console.log("video url");
       console.log(this.movieurl)
       this.loaded=true
@@ -79,13 +79,13 @@ this.store.subscribe(resp=>{
      //document.addEventListener.createExpression("alert('hello hello');")
     // document.onchange("alert('boom)");
 //document.currentScript
-      
+
      // alert('loaded from details')
   }});
     this.store.dispatch(new GetMoviesByNameAction(this.movieName!))
 
   }
-  
+
 
 }
 

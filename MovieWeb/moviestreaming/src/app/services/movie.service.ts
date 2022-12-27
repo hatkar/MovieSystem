@@ -9,12 +9,12 @@ import { DataStateEnum } from '../models/state';
 })
 export class MovieService {
  constructor(private httpClient: HttpClient,private eventDrivenService:EventDriverService) { }
- 
+
   getMovie(movieName: string | undefined):Observable<MovieDTO> {
     return this.httpClient.get('http://localhost:9292/movies/api/movie/'+movieName);
   }
 
-  
+
 
   public uploadfile(movie:any,filepicture:File,movieFile:File) {
     let formParams = new FormData();
@@ -22,15 +22,15 @@ export class MovieService {
     formParams.append('filepicture', filepicture);
     formParams.append('filemovie', movieFile);
 
-    return this.httpClient.post('http://localhost:9292/movies/api/addmovie', movie)
+    return this.httpClient.post('http://localhost:9292/admin/api/addmovie', movie)
   }
   public getcategories():Observable<categoryDTO[]> {
-    
+
     this.eventDrivenService.publishEvent({type:DataStateEnum.LOADING,payload:"Loading data from server"});
     //delay(10000);
      const result = this.httpClient.get<categoryDTO[]>('http://localhost:9292/movies/api/categories')
      this.eventDrivenService.publishEvent({type:DataStateEnum.LOADED,payload:"Loading data from server"});
-  
+
     return result;
   }
   public GetAllMovies():Observable<MovieDTO[]> {
@@ -55,7 +55,7 @@ export class MovieService {
   }
   public searchpagedcategories(page:number,keyword:string):Observable<Pagecategory> {
     //by default size =3
- 
+
      return this.httpClient.get<Pagecategory>('http://localhost:9292/movies/api/pageablecategoriescontain'+'?page='+page+'&size=10&keyword='+keyword);
    }
   public getpagedmovie(page:number,categorieid:string,keyword:string):Observable<PageMovie>
@@ -64,12 +64,13 @@ export class MovieService {
   }
   public savefile(data:FormData):Observable<MovieDTO> {
     console.log("sending Movie ...");
-     return this.httpClient.post<MovieDTO>('http://localhost:9292/file/uploadmovie', data );
+    ///admin/api
+     return this.httpClient.post<MovieDTO>('http://localhost:9292/admin/api/uploadmovie', data );
   }
   //save Categorie
   public saveCategorie(categ:categoryDTO):Observable<categoryDTO>
   {
-    return this.httpClient.post<categoryDTO>('http://localhost:9292/movies/api/addCategorie',categ);
+    return this.httpClient.post<categoryDTO>('http://localhost:9292/admin/api/addCategorie',categ);
   }
 
 

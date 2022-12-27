@@ -1,6 +1,6 @@
 spring:
   application:
-    name: api-gateway
+    name: gateway-service
   cloud:
     gateway:
       discovery:
@@ -9,3 +9,16 @@ spring:
 
     config:
       enabled: false
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+      instance:
+        preferIpAddress: true
+  instance:
+    instance-id: ${spring.application.name}:${random.uuid}
+
+server:
+  port: 9292
+app:
+  jwtSecret: karim

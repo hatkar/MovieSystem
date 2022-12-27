@@ -5,8 +5,10 @@ import com.hatmani.securityservice.Repository.UserRepository
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
 import org.springframework.boot.runApplication
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient
 
 @SpringBootApplication(exclude =[SecurityAutoConfiguration::class])
+@EnableEurekaClient
 class SecurityServiceApplication(
     private val userRepository: UserRepository,
     private val roleRepository: RoleRepository

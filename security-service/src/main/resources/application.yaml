@@ -1,21 +1,21 @@
 spring:
+  application:
+    name: security-service
   output:
     ansi:
       enabled: always
-  datasource:
-    url: jdbc:h2:file:./kotlin-tuto/db-user
-    username: sa
-    password: sa
-  jpa:
-    hibernate:
-      ddl-auto: update
-    database-platform: org.hibernate.dialect.H2Dialect
-logging:
-  level:
-    org:
+    datasource:
+      url: jdbc:h2:file:./kotlin-tuto/db-user
+      username: sa
+      password: sa
+    jpa:
       hibernate:
-        SQL: DEBUG
-        type:
-          descriptor:
-            sql:
-              BasicBinder: TRACE
+        ddl-auto: update
+      database-platform: org.hibernate.dialect.H2Dialect
+
+  cloud:
+    config:
+      enabled: true
+
+  config:
+    import: configserver:http://localhost:9296

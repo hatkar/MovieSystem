@@ -11,14 +11,14 @@ import { MoviesStateEnum } from 'src/app/state/Movies.reducer';
   styleUrls: ['./searchedmovie.component.css']
 })
 export class SearchedmovieComponent implements OnInit {
-  BASEURL : string="http://localhost:9292/api";
+  BASEURL : string="http://localhost:9292";
 keyword:string="";
 readonly DataStateEnum= MoviesStateEnum;
 pagemovies?:PageMovie;
 pagArray: number[] = [];
 categories: categoryDTO[] = [];
 loadded:boolean=false;
-  constructor(private store:Store<any>,private route: ActivatedRoute,private router: Router) { 
+  constructor(private store:Store<any>,private route: ActivatedRoute,private router: Router) {
     this.route.params.subscribe(params => {this.keyword=params['keyword']
     console.log(params)
     console.log(this.keyword)
@@ -29,20 +29,20 @@ loadded:boolean=false;
     }
   this.getmovies(this.keyword);
   this.getCategories()
-  
+
   });
   }
   getCategories() {
     this.store.subscribe((state)=>{
       if(state.catalogState.dataState==this.DataStateEnum.LOADED){
         this.categories=state.catalogState.Categogories;
-   
-      
-      console.log("=======>**<======") 
+
+
+      console.log("=======>**<======")
     console.log(this.categories)
       }
     });
-  
+
     this.store.dispatch(new GetAllCategoriesAction());
   }
   findCatefName(id:string):string
@@ -70,7 +70,7 @@ loadded:boolean=false;
         }
         );
         this.store.dispatch(new SearchAllPagedMoviesAction(0,keyword))
-   
+
   }
 
   ngOnInit(): void {
@@ -103,7 +103,7 @@ loadded:boolean=false;
   }
 
   createpagine(totalpag:number,current:number)
-  { 
+  {
 totalpag=totalpag-1;
     console.log("RECEIVED TOTAL PAGE ==>"+totalpag)
     console.log("RECEIVED CURRENT PAGE ==>"+current)
@@ -137,7 +137,7 @@ return this.pagArray;
   {
     this.router.navigate(['details', name]);
    // this.route.navigate(['admin/listmovie', { idcategorie: 'categid' }]);
-    
+
   }
 
 }
