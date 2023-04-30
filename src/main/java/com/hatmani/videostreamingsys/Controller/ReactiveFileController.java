@@ -22,7 +22,7 @@ import java.nio.file.Paths;
 import static org.springframework.http.MediaType.APPLICATION_OCTET_STREAM_VALUE;
 
 
-@CrossOrigin(origins = "http://localhost:4200", maxAge = 36000)
+@CrossOrigin(origins = "*", maxAge = 36000)
 @Slf4j
 @RestController
 //@RequestMapping("file")

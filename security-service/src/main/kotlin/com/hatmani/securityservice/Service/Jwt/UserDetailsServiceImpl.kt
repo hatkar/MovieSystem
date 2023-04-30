@@ -19,6 +19,7 @@ class UserDetailsServiceImpl(
             val user: User? = userRepository.findByUsername(username!!)
             println("loadUserByUsername*********")
             println(user.toString())
+            //println(user.role.toString())
             return UserDetailsImpl(user!!)
         } catch (ex: Exception) {
             throw Exception("User Not Found with username: " + username)

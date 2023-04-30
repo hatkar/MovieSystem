@@ -22,9 +22,18 @@ class JwtUtils {
         var userPrincipal: UserDetailsImpl = authentication.principal as UserDetailsImpl
         var now: Date = Date()
         var expir: Date = Date(now.time + jwtExpirationInMs)
+        val claims = Jwts.claims().setSubject(userPrincipal.username)
+        claims["fullname"] = userPrincipal.getFullname()
+        claims["role"] = userPrincipal.getRole()
+        /*
+         Claims claims = Jwts.claims().setSubject(u.getUsername());
+        claims.put("userId", u.getId() + "");
+        claims.put("role", u.getRole());
+         */
+
         return Jwts.builder()
-                .setSubject(userPrincipal.username)
-                .claim("role", userPrincipal.authorities.first())
+                //.setSubject(userPrincipal.username)
+                .setClaims(claims)
                 .setIssuedAt(Date())
                 .setExpiration(expir)
                 .signWith(SignatureAlgorithm.HS384, jwtSecret)

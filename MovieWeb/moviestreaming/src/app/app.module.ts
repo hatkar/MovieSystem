@@ -21,6 +21,7 @@ import { ListmoviebycategComponent } from './pages/categories/listmoviebycateg/l
 import { LoadingComponent } from './pages/components/loading/loading.component';
 import { SearchedmovieComponent } from './pages/searchedmovie/searchedmovie.component';
 import { LoginComponent } from './pages/login/login.component';
+import { NotfoundComponent } from './pages/login/notfound/notfound.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { LoginComponent } from './pages/login/login.component';
     ListmoviebycategComponent,
     LoadingComponent,
     SearchedmovieComponent,
-    LoginComponent
+    LoginComponent,
+    NotfoundComponent
   ],
   imports: [
     BrowserModule,

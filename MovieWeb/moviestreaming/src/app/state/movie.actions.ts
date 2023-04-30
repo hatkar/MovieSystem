@@ -42,7 +42,7 @@ export enum MoviesActionsTypes{
     GET_MOVIE="[Movie] Get  Movie By Name",
     GET_MOVIE_SUCCESS="[Movie] Get  Movie By Name Success",
     GET_MOVIE_ERROR="[Movie] Get  Movie By Name Error",
-}  
+}
 
 /* Get ALL Movies Actions*/
 
@@ -51,13 +51,13 @@ export class GetAllMoviesAction implements Action{
     constructor(public payload:any) {
     }
   }
-  
+
   export class GetAllMoviesActionSuccess implements Action{
     type: MoviesActionsTypes=MoviesActionsTypes.GET_ALL_MOVIES_SUCCESS;
     constructor(public payload:MovieDTO[]) {
     }
   }
-  
+
   export class GetAllMoviesActionError implements Action{
     type: MoviesActionsTypes=MoviesActionsTypes.GET_ALL_MOVIES_ERROR;
     constructor(public payload:string) {
@@ -129,13 +129,13 @@ export class GetAllPagedCategoriesActionError implements Action{
     constructor(public payload:number,public keyword:string) {
     }
   }
-  
+
   export class SearchAllPagedCategoriesActionSuccess implements Action{
     type: MoviesActionsTypes=MoviesActionsTypes.SEARCH_ALL_PAGED_CATEGORIES_SUCCESS;
     constructor(public payload:Pagecategory) {
     }
   }
-  
+
   export class SearchAllPagedCategoriesActionError implements Action{
     type: MoviesActionsTypes=MoviesActionsTypes.SEARCH_ALL_PAGED_CATEGORIES_ERROR;
     constructor(public payload:string) {

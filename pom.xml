@@ -10,9 +10,10 @@
     </parent>
     <groupId>com.hatmani</groupId>
     <artifactId>videostreamingsys</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.1</version>
     <name>videostreamingsys</name>
     <description>Demo project for Spring Boot</description>
+
     <properties>
         <java.version>1.8</java.version>
         <spring-cloud.version>2021.0.4</spring-cloud.version>
@@ -86,6 +87,7 @@
         </dependencies>
     </dependencyManagement>
     <build>
+        <finalName>movie-service</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

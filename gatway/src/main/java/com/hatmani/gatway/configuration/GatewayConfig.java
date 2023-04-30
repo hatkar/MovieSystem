@@ -32,7 +32,7 @@ public class GatewayConfig {
                         .filters(f ->
                                 f.rewritePath("/service(?<segment>/?.*)", "$\\{segment}")
                                         .filter(filter.apply(
-                                                new AuthenticationFilter.Config("Admin")))
+                                                new AuthenticationFilter.Config("ADMIN")))
                         )
                         .uri("lb://video-service"))
 

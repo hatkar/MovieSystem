@@ -6,7 +6,10 @@ import javax.persistence.*
 
 
 @Entity
-open class User(
+//h2 possede un variable User alors on change le nom de table
+@Table(name = "USER_TABLE")
+
+open  class User(
     var firstname: String = "",
     var lastname: String = "",
     var username: String = "",
@@ -34,7 +37,7 @@ open class User(
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "id_role")
-     var role: Role? = null
+   lateinit  var role: Role
 
     constructor(user: User) : this(user.firstname, user.lastname, user.username, user.email, user.password){
         id = user.id
@@ -56,6 +59,7 @@ open class User(
         println("*====>"+username)
         println("*====>"+email)
         println("*====>"+password)
+        println("*=====>role:"+role)
         if (!this.username.isNullOrEmpty())
         return "User(firstname='$firstname', lastname='$lastname', username='$username', email='$email', password='$password')"
         else

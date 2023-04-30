@@ -8,13 +8,21 @@ import { GetAllCategoriesAction, GetAllCategoriesActionError, GetAllCategoriesAc
 
 @Injectable()
 export class MoviesEffects {
-    /**
-     *
-     */
-    constructor(private movieservice:MovieService, private effectActions:Actions) {
-             
-    }
+    constructor(private movieservice:MovieService, private effectActions:Actions) {  }
 
+  /*Get Movie Of Categorie And year Release Paged */
+  getAllPagedMovieOfCategoriesAndYearsEffect:Observable<Action>=createEffect(
+    ()=>this.effectActions.pipe(
+      ofType(MoviesActionsTypes.GET_ALL_PAGED_MOVIE_OFCATEGORIESANDYEARS),
+      mergeMap((action:GetAllPagedMoviesOfCategoriesAndYearsAction)=>{
+        return this.movieservice.GetAllMoviesPagedAndFiltred(action.payload,action.categorieid,action.minyear,action.maxyear)
+          .pipe(
+            map((mov)=> new GetAllPagedMoviesOfCategoriesAndYearsActionSuccess(mov)),
+            catchError((err)=>of(new GetAllPagedMoviesOfCategoriesAndYearsActionError(err.message)))
+          )
+      })
+    )
+  );
 
     getAllMoviesEffect:Observable<Action>=createEffect(
         ()=>this.effectActions.pipe(
@@ -64,7 +72,7 @@ export class MoviesEffects {
           })
         )
       );
-      /*Get ALL Categories*/ 
+      /*Get ALL Categories*/
       getAllCategoriesEffect:Observable<Action>=createEffect(
         ()=>this.effectActions.pipe(
           ofType(MoviesActionsTypes.GET_ALL_CATEGORIES),
@@ -89,19 +97,7 @@ export class MoviesEffects {
           })
         )
       );
-      /*Get Movie Of Categorie And year Release Paged */
-      getAllPagedMovieOfCategoriesAndYearsEffect:Observable<Action>=createEffect(
-        ()=>this.effectActions.pipe(
-          ofType(MoviesActionsTypes.GET_ALL_PAGED_MOVIE_OFCATEGORIESANDYEARS),
-          mergeMap((action:GetAllPagedMoviesOfCategoriesAndYearsAction)=>{
-                return this.movieservice.GetAllMoviesPagedAndFiltred(action.payload,action.categorieid,action.minyear,action.maxyear)
-                  .pipe(
-                    map((mov)=> new GetAllPagedMoviesOfCategoriesAndYearsActionSuccess(mov)),
-                    catchError((err)=>of(new GetAllPagedMoviesOfCategoriesAndYearsActionError(err.message)))
-                  )
-          })
-        )
-      );
+
        /*Get Movie Of Categorie And year Release Paged */
        SearchAllPagedMovie:Observable<Action>=createEffect(
         ()=>this.effectActions.pipe(
@@ -115,7 +111,7 @@ export class MoviesEffects {
           })
         )
       );
-      //save Categ effect 
+      //save Categ effect
       //first launching SaveCategoriesActionSuccess
       //then fire getallpagedcateg
       saveCategoriesEffect:Observable<Action>=createEffect(
@@ -129,14 +125,14 @@ export class MoviesEffects {
                       return new SaveCategoriesActionSuccess(categ);
                      // return new GetAllPagedCategoriesAction(0);
                     }),
-                      
+
                     catchError((err)=>of(new SaveCategoriesActionError(err.message)))
                   )
           })
         )
       );
        //save Movie
-     
+
       saveMovieEffect:Observable<Action>=createEffect(
         ()=>this.effectActions.pipe(
           ofType(MoviesActionsTypes.SAVE_MOVIE),
@@ -148,12 +144,12 @@ export class MoviesEffects {
                       return new SaveMovieActionSuccess(categ);
                      // return new GetAllPagedCategoriesAction(0);
                     }),
-                      
+
                     catchError((err)=>of(new SaveMovieActionError(err.message)))
                   )
           })
         )
       );
-      
-      
+
+
 }

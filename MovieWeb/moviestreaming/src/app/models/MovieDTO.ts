@@ -1,3 +1,17 @@
+export class User {
+ email?:string
+  username?: string;
+  firstname?: string;
+  lastname?: string;
+  role ="ADMIN";
+  token?: string;
+
+
+}
+export class LoginRequest{
+  username?: string;
+  password?: string;
+}
 export class MovieDTO {
 
     id?: any;

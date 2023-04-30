@@ -51,7 +51,7 @@ const initState:MoviesState={
       case MoviesActionsTypes.GET_ALL_CATEGORIES_ERROR:
         console.log('REDUCER : GET_ALL_PAGED_CATEGORIES_ERROR');
         return {...state, dataState:MoviesStateEnum.ERROR, errorMessage:(<MoviesActions>action).payload}
-  
+
 
         /*paged Categories*/
       case MoviesActionsTypes.GET_ALL_PAGED_CATEGORIES:
@@ -63,7 +63,7 @@ const initState:MoviesState={
       case MoviesActionsTypes.GET_ALL_PAGED_CATEGORIES_ERROR:
         console.log('REDUCER : GET_ALL_PAGED_CATEGORIES_ERROR');
         return {...state, dataState:MoviesStateEnum.ERROR, errorMessage:(<MoviesActions>action).payload}
-    
+
 /*search paged Categories*/
 case MoviesActionsTypes.SEARCH_ALL_PAGED_CATEGORIES:
   console.log('REDUCER : SEARCH_ALL_PAGED_CATEGORIES');
@@ -74,7 +74,7 @@ case MoviesActionsTypes.SEARCH_ALL_PAGED_CATEGORIES_SUCCESS:
 case MoviesActionsTypes.SEARCH_ALL_PAGED_CATEGORIES_ERROR:
   console.log('REDUCER : SEARCH_ALL_PAGED_CATEGORIES_ERROR');
   return {...state, dataState:MoviesStateEnum.ERROR, errorMessage:(<MoviesActions>action).payload}
-  
+
         /*paged Movie of Categorie*/
       case MoviesActionsTypes.GET_ALL_PAGED_MOVIE_OFCATEGORIES:
         console.log('REDUCER : GET_ALL_PAGED_MOVIE');
@@ -105,7 +105,7 @@ case MoviesActionsTypes.SEARCH_ALL_PAGED_CATEGORIES_ERROR:
         case MoviesActionsTypes.SEARCH_ALL_PAGED_MOVIE_ERROR:
           console.log('REDUCER : GET_ALL_PAGED_CATEGORIES_ERROR');
           return {...state, dataState:MoviesStateEnum.ERROR, errorMessage:(<MoviesActions>action).payload}
-        
+
       /*save Categories*/
       case MoviesActionsTypes.SAVE_CATEGORIES:
       console.log('SAVE CATEGORIE ACTION');

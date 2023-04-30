@@ -1,0 +1,53 @@
+spring:
+  application:
+    name: security-service
+  cloud:
+    config:
+      enabled: true
+      uri: http://localhost:9296
+
+  output:
+    ansi:
+      enabled: always
+    datasource:
+      url: jdbc:h2:file:./kotlin-tuto/db-user2
+      username: sa
+      password: sa
+    jpa:
+      hibernate:
+        ddl-auto: update
+      database-platform: org.hibernate.dialect.H2Dialect
+app:
+  jwtSecret: karim
+
+
+  jwtExpirationInMs: 1000000
+
+
+
+
+
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE
+
+#server:
+#  port: 0
+#app:
+#  jwtSecret: karim
+#  jwtExpirationInMs: 1000000
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: http://localhost:8761/eureka
+#      instance:
+#        preferIpAddress: true
+#  instance:
+#    instance-id: ${spring.application.name}:${random.uuid}

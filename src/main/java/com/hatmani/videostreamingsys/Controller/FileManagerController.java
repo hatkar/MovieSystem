@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
 //import javax..servlet.http.HttpServletRequest;
-@CrossOrigin(origins = "http://localhost:4200", maxAge = 36000)
+@CrossOrigin(origins = "*", maxAge = 36000)
 @RestController
 //@RequestMapping("/api")
 @RequestMapping("/api/ressources")

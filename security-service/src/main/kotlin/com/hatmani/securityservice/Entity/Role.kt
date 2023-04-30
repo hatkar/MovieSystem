@@ -7,15 +7,14 @@ import javax.persistence.*
 data class Role(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    var id: Long,
+    val id: Long=0,
 
-    var role: String,
-    @OneToMany(mappedBy = "role")
-    @JsonIgnoreProperties("roles")
-    var users:MutableList<User> =mutableListOf()
+    val role: String="",
+
 
 ) {
-    constructor(role: String) : this(id=1L,role=role, mutableListOf())
+    constructor(therole: String) : this(role = therole)
+//constructor():this(id=1L,role="", mutableListOf())
 }
 
 

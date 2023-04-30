@@ -21,7 +21,12 @@ class UserDetailsImpl() : UserDetails {
 
        return mutableListOf(SimpleGrantedAuthority(user.role?.role ?: "NONE"))
     }
-
+fun getFullname():String{
+    return user.firstname+" " + user.lastname
+}
+    fun getRole():String{
+        return authorities.elementAt(0).authority;
+    }
     override fun getPassword(): String {
         println("!!!!!*-*-*-*-*-*-*-*-*--*-*-*-*-!!!!")
        println(user.username)

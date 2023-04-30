@@ -16,14 +16,15 @@ export class MovieService {
 
 
 
-  public uploadfile(movie:any,filepicture:File,movieFile:File) {
+  /*public uploadfile(movie:any,filepicture:File,movieFile:File) {
+   console.log("upload file")
     let formParams = new FormData();
     formParams.append('movie',movie);
     formParams.append('filepicture', filepicture);
     formParams.append('filemovie', movieFile);
 
     return this.httpClient.post('http://localhost:9292/admin/api/addmovie', movie)
-  }
+  }*/
   public getcategories():Observable<categoryDTO[]> {
 
     this.eventDrivenService.publishEvent({type:DataStateEnum.LOADING,payload:"Loading data from server"});
@@ -63,9 +64,7 @@ export class MovieService {
     return this.httpClient.get<PageMovie>('http://localhost:9292/movies/api/searchmovieofcategorie?page='+page+'&size=5&idcategory='+categorieid+'&keyword='+keyword);
   }
   public savefile(data:FormData):Observable<MovieDTO> {
-    console.log("sending Movie ...");
-    ///admin/api
-     return this.httpClient.post<MovieDTO>('http://localhost:9292/admin/api/uploadmovie', data );
+        return this.httpClient.post<MovieDTO>('http://localhost:9292/admin/api/uploadmovie', data );
   }
   //save Categorie
   public saveCategorie(categ:categoryDTO):Observable<categoryDTO>
