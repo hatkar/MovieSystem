@@ -7,6 +7,7 @@ Il contient
 *Registry-service :Microservice Spring netflix eureka pour l'enregistrement des instance de microservices
 
 *Security-Service :Microservice Spring Security Developpe par Kotlin au Lieu de java qui permet la creation de user et la generation de JWToken
+!!Spring Security 5+ has released OAuth JWT support. Using the latest version of OAuth for JWT support is recommended over the use of custom security or filters. https://www.toptal.com/spring/spring-security-tutorial  maybe je change le code pour utiliser spring security 5!!
 
 *Videostreamingsys:Microservice Spring reactive programming
 
