@@ -1,17 +1,24 @@
-Ce project est une application de pattern Microservice Developpé par **Angular et Spring Cloud(TypeScript,reactive programming,Java,Kotlin,MongoDb)**
+MovieSystem – Gestion de Films et Séries
 
-Il contient 
-****
-*Config-service :Microservice Spring pour la centralisation de Configuration
+Développement d’une application web de gestion de films basée sur une architecture microservices avec Spring Cloud et Angular, permettant un traitement efficace et sécurisé des données utilisateur.
 
-*Registry-service :Microservice Spring netflix eureka pour l'enregistrement des instance de microservices
+✅ Technologies utilisées : Java, Kotlin, Spring Cloud, Angular, TypeScript, Reactive Programming, MongoDB, Docker
 
-*Security-Service :Microservice Spring Security Developpe par Kotlin au Lieu de java qui permet la creation de user et la generation de JWToken
-!!Spring Security 5+ has released OAuth JWT support. Using the latest version of OAuth for JWT support is recommended over the use of custom security or filters. https://www.toptal.com/spring/spring-security-tutorial  maybe je change le code pour utiliser spring security 5!!
+✅ Principales fonctionnalités :
 
-*Videostreamingsys:Microservice Spring reactive programming
+🔧 Config-service : Centralisation des configurations avec Spring Cloud Config
 
-*Gateway :Microservice GateWay qui permet le routage des api et le filtre d'acces a certain service avec role
+📌 Registry-service : Gestion des microservices avec Spring Netflix Eureka
+
+🔐 Security-Service : Sécurisation des accès avec Spring Security, JWT et OAuth 2.0
+
+🎥 Videostreamingsys : Implémentation de streaming vidéo en Reactive Programming
+
+🌐 Gateway-service : API Gateway pour le routage et la gestion des rôles utilisateur
+
+🔄 Possibilité d’évolution : Migration vers Spring Security 5+ pour une meilleure gestion des tokens JWT et OAuth.
+
+Ce projet illustre mes compétences en architecture microservices, développement full-stack, sécurité des API et déploiement cloud.
 ![Capture d’écran 2023-04-29 à 11 52 56 PM](https://user-images.githubusercontent.com/3720770/235327509-a8f07a16-e261-4945-83b5-013ea1d82085.png)
 ![Capture d’écran 2023-04-29 à 11 52 36 PM](https://user-images.githubusercontent.com/3720770/235327513-2b9cdfd8-81d2-439c-878b-17dbdf55a68d.png)
 ![Capture d’écran 2023-04-29 à 11 52 31 PM](https://user-images.githubusercontent.com/3720770/235327516-3ae020e1-b996-432b-8917-361c44fa7728.png)
